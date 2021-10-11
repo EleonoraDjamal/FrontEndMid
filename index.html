@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+    <title>StudentListApp</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+        <div class="container-fluid">
+          <span class="navbar-brand">Student Management MiniApp</span>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+            </ul>
+        </div>
+      </nav>
+<div class="container">
+    <h1>Student Management <br> MiniApp</h1>
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col-7">
+        <h4>Add Student</h4>
+        <button onclick="StudentForm()" id="formbutton" class="btn btn-primary btn-sm" value="Show Form Add New Student">Show Form Add New Student</button>
+            <form id="studentform"><br>
+            <div class="mb-3">
+                <label for="studentID" class="form-label" >Student ID (NIM)</label>
+                <input type="text" class="form-control" id="studentID" placeholder="123456">
+            </div>
+            <div class="mb-3">
+                <label for="fullname" class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="fullname" placeholder="John Doe">
+            </div>
+        <label for="gender" class="form-label" >Gender</label>
+        <br>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Male
+            </label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+            <label class="form-check-label" for="flexRadioDefault1">
+              Female
+            </label>
+        </div>
+        <br>
+        <label for="Faculty" class="form-label" >Faculty</label><br>
+        <select class="form-select" aria-label="Default select example" id="FacultyOption">
+            <option value="" disabled selected>-- SELECT FACULTY --</option>
+            <option value="ekonomi">Fakultas Ekonomi</option>
+            <option value="filsafat">Fakultas Filsafat</option>
+            <option value="keguruan">Fakultas Keguruan & Ilmu Pendidikan</option>
+            <option value="pertanian">Fakultas Pertanian</option>
+            <option value="komputer">Fakultas Ilmu Komputer</option>
+            <option value="keperawatan">Fakultas Ilmu Keperawatan</option>
+        </select>
+        <br>
+        <label for="ProgramOfStudy" class="form-label" >Program of Study</label><br>
+        <select class="form-select" aria-label="Default select example" id="ProgramOption">
+            <option value="" disabled selected>-- SELECT PROGRAM OF STUDY --</option>
+        </select>
+        <br>
+        <button onclick="AddStudent();" class="btn btn-primary btn-sm text-center" type="submit" id="btnAddStudent">Add Student</button>
+            </form>
+        </div>
+
+        <div class="col-5">
+        <h4>Filter Students By</h4>
+        <label for="facultyoption" class="form-label" >Faculty</label><br>
+        <select class="form-select-sm" aria-label="Default select example" id="FacultyOption">
+            <option value="" disabled selected>-- SELECT FACULTY --</option>
+            <option value="ekonomi">Fakultas Ekonomi</option>
+            <option value="filsafat">Fakultas Filsafat</option>
+            <option value="keguruan">Fakultas Keguruan & Ilmu Pendidikan</option>
+            <option value="pertanian">Fakultas Pertanian</option>
+            <option value="komputer">Fakultas Ilmu Komputer</option>
+            <option value="keperawatan">Fakultas Ilmu Keperawatan</option>
+        </select><br>
+        <button class="btn btn-primary btn-sm text-center" type="submit" id="btnShowStudentFaculty">Show Students</button>
+        <br><br>
+        <label for="programofstudyoption" class="form-label" >Program of Study</label><br>
+        <select class="form-select-sm" aria-label="Default select example" id="ProgramOption">
+            <option value="" disabled selected>-- SELECT PROGRAM OF STUDY --</option>
+        </select><br>
+        <button class="btn btn-primary btn-sm text-center" type="submit" id="btnShowStudentPOS">Show Students</button>
+        </div>
+    </div>
+    <br><br>
+<hr>
+
+
+<h2 class="text-center">Our Students</h2>
+<div class="mb-3">
+    <label for="NameSearch" class="form-label" ></label>
+    <input type="search" class="form-control" onkeyup="nameSearch()" id="NameSearch" placeholder="Search student by name...">
+</div>
+<br>
+<table class="table" id="DataTable">
+    <thead>
+      <tr>
+        <th scope="col">Student ID (NIM)</th>
+        <th scope="col">Full Name</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Faculty</th>
+        <th scope="col">Program of Study</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+      <tr>
+        <td>105011810001</td>
+        <td>John Doe</td>
+        <td>Male</td>
+        <td>FIK</td>
+        <td>Sistem Informasi</td>
+        <td><button type="button" class="btn btn-primary" onkeyup="studentDelete()"><i class="bi bi-person-dash-fill"></i></button></td>
+      </tr>
+      <tr>
+        <td>105011810001</td>
+        <td>Jack Richer</td>
+        <td>Male</td>
+        <td>FEB</td>
+        <td>Manajemen</td>
+        <td><button type="button" class="btn btn-primary"><i class="bi bi-person-dash-fill"></i></button></td></td>
+      </tr>
+      <tr>
+        <td>105011810001</td>
+        <td>Mery Heather</td>
+        <td>Female</td>
+        <td>FIK</td>
+        <td>Informatika</td>
+        <td><button type="button" class="btn btn-primary"><i class="bi bi-person-dash-fill"></i></button></td></td>
+      </tr>
+  </table>
+<br><br>
+</div>
+
+<footer>
+    <hr>
+    <p class="text-center"> made with 
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bootstrap" viewBox="0 0 16 16">
+            <path d="M5.062 12h3.475c1.804 0 2.888-.908 2.888-2.396 0-1.102-.761-1.916-1.904-2.034v-.1c.832-.14 1.482-.93 1.482-1.816 0-1.3-.955-2.11-2.542-2.11H5.062V12zm1.313-4.875V4.658h1.78c.973 0 1.542.457 1.542 1.237 0 .802-.604 1.23-1.764 1.23H6.375zm0 3.762V8.162h1.822c1.236 0 1.887.463 1.887 1.348 0 .896-.627 1.377-1.811 1.377H6.375z"/>
+            <path d="M0 4a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4zm4-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V4a3 3 0 0 0-3-3H4z"/>
+        </svg>
+    </p>
+    <p class="text-center">Eleonora Paula Djamal &copy; 2020</p>
+</footer>
+    <script src="filter.js"></script>
+    <script src="table.js"></script>
+</body>
+</html>

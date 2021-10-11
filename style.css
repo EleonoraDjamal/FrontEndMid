@@ -1,0 +1,12 @@
+button[id="btnShowStudentPOS"]{
+    width: 58%;
+}
+
+button[id="btnShowStudentFaculty"]{
+    width: 59%;
+}
+
+button[id="btnAddStudent"]{
+    width: 100%;
+}
+
